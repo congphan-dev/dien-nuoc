@@ -1,0 +1,64 @@
+---
+---
+<div class="ticker-wrapper overflow-hidden" style="background: #FF6B1A; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);">
+  <div class="ticker-inner flex items-center py-3">
+    <div class="ticker-track flex items-center gap-0 whitespace-nowrap">
+      {Array.from({length: 3}).map(() => (
+        <span class="ticker-content flex items-center gap-8 pr-8">
+          <span class="font-mono font-bold text-sm uppercase tracking-widest text-white">
+            ★ Sửa điện tại nhà
+          </span>
+          <span class="font-mono text-sm uppercase tracking-widest" style="color: rgba(255,255,255,0.7);">•</span>
+          <span class="font-mono font-bold text-sm uppercase tracking-widest text-white">
+            ★ Sửa nước tại nhà
+          </span>
+          <span class="font-mono text-sm uppercase tracking-widest" style="color: rgba(255,255,255,0.7);">•</span>
+          <span class="font-mono font-bold text-sm uppercase tracking-widest text-white">
+            ★ Vệ sinh điều hòa
+          </span>
+          <span class="font-mono text-sm uppercase tracking-widest" style="color: rgba(255,255,255,0.7);">•</span>
+          <span class="font-mono font-bold text-sm uppercase tracking-widest text-white">
+            ★ Nạp gas điều hòa
+          </span>
+          <span class="font-mono text-sm uppercase tracking-widest" style="color: rgba(255,255,255,0.7);">•</span>
+          <span class="font-mono font-bold text-sm uppercase tracking-widest text-white">
+            ★ Thông cống nghẹt
+          </span>
+          <span class="font-mono text-sm uppercase tracking-widest" style="color: rgba(255,255,255,0.7);">•</span>
+          <span class="font-mono font-bold text-sm uppercase tracking-widest text-white">
+            ★ Thay dây điện
+          </span>
+          <span class="font-mono text-sm uppercase tracking-widest" style="color: rgba(255,255,255,0.7);">•</span>
+          <span class="font-mono font-bold text-sm uppercase tracking-widest text-white">
+            ★ Lắp đặt thiết bị điện
+          </span>
+          <span class="font-mono text-sm uppercase tracking-widest" style="color: rgba(255,255,255,0.7);">•</span>
+          <span class="font-mono font-bold text-sm uppercase tracking-widest text-white">
+            ★ Bảo hành 6 tháng
+          </span>
+          <span class="font-mono text-sm uppercase tracking-widest" style="color: rgba(255,255,255,0.7);">•</span>
+          <span class="font-mono font-bold text-sm uppercase tracking-widest text-white">
+            ★ Có mặt 30 phút
+          </span>
+          <span class="font-mono text-sm uppercase tracking-widest" style="color: rgba(255,255,255,0.7);">•</span>
+        </span>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .ticker-track {
+    animation: ticker-scroll 40s linear infinite;
+    display: inline-flex;
+  }
+
+  .ticker-wrapper:hover .ticker-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes ticker-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.333%); }
+  }
+</style>

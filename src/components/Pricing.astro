@@ -1,0 +1,287 @@
+---
+const pricingData = {
+  dien: {
+    label: "⚡ Điện",
+    items: [
+      { service: "Sửa chữa điện tổng quát", price: "150.000đ", note: "/ lần" },
+      { service: "Thay dây điện (/ mét)", price: "25.000đ", note: "/ mét" },
+      { service: "Thay aptomat, cầu dao", price: "80.000đ", note: "/ bộ" },
+      { service: "Lắp ổ cắm, công tắc", price: "50.000đ", note: "/ cái" },
+      { service: "Lắp đèn thường", price: "80.000đ", note: "/ bộ" },
+      { service: "Lắp đèn ốp trần, thả trần", price: "150.000đ", note: "/ bộ" },
+      { service: "Sửa bảng điện chính", price: "200.000đ", note: "từ" },
+      { service: "Kiểm tra, tư vấn hệ thống", price: "Miễn phí", note: "" },
+    ],
+  },
+  nuoc: {
+    label: "🔧 Nước",
+    items: [
+      { service: "Sửa vòi nước bị hỏng", price: "100.000đ", note: "/ lần" },
+      { service: "Thay vòi sen, vòi bồn cầu", price: "150.000đ", note: "/ lần" },
+      { service: "Thông cống nghẹt (nhà vệ sinh)", price: "200.000đ", note: "/ lần" },
+      { service: "Thông cống ngoài (sân, bếp)", price: "300.000đ", note: "từ" },
+      { service: "Sửa đường ống nước rò rỉ", price: "150.000đ", note: "/ điểm" },
+      { service: "Sửa bình nóng lạnh", price: "200.000đ", note: "từ" },
+      { service: "Sửa máy bơm nước", price: "250.000đ", note: "từ" },
+      { service: "Hút bể phốt (500L)", price: "400.000đ", note: "/ lần" },
+    ],
+  },
+  "dieu-hoa": {
+    label: "❄️ Điều Hòa",
+    items: [
+      { service: "Vệ sinh điều hòa 1 cục", price: "150.000đ", note: "/ máy" },
+      { service: "Vệ sinh điều hòa 2 cục", price: "250.000đ", note: "/ bộ" },
+      { service: "Nạp gas điều hòa 1HP", price: "300.000đ", note: "/ máy" },
+      { service: "Nạp gas điều hòa 1.5HP", price: "350.000đ", note: "/ máy" },
+      { service: "Nạp gas điều hòa 2HP+", price: "400.000đ", note: "/ máy" },
+      { service: "Sửa điều hòa không lạnh", price: "200.000đ", note: "từ" },
+      { service: "Lắp đặt điều hòa mới", price: "500.000đ", note: "từ" },
+      { service: "Bảo dưỡng định kỳ", price: "200.000đ", note: "/ lần" },
+    ],
+  },
+};
+
+type PricingKey = keyof typeof pricingData;
+const tabs: PricingKey[] = ["dien", "nuoc", "dieu-hoa"];
+---
+
+<section id="bang-gia" class="py-20 md:py-28" style="background: #0a0a0f;">
+  <div class="container mx-auto px-4 md:px-8">
+    <!-- Section Header -->
+    <div class="mb-12 text-center">
+      <div class="section-label mb-3">— Bảng Giá Tham Khảo —</div>
+      <h2 class="section-title">BẢNG GIÁ</h2>
+      <div class="title-underline mx-auto"></div>
+      <p class="font-mono text-sm mt-4 max-w-md mx-auto" style="color: #9ca3af;">
+        Giá cố định, minh bạch. Không phát sinh chi phí ẩn.
+      </p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs-container">
+      <div class="tabs-header" id="pricing-tabs">
+        {tabs.map((tab) => (
+          <button
+            class="tab-btn font-mono font-bold text-sm uppercase tracking-wider"
+            data-tab={tab}
+          >
+            {pricingData[tab].label}
+          </button>
+        ))}
+      </div>
+
+      <!-- Tab Panels -->
+      {tabs.map((tab) => (
+        <div class="tab-panel" data-panel={tab} style="display: none;">
+          <div class="pricing-table">
+            <div class="table-header">
+              <span class="font-mono text-xs uppercase tracking-widest" style="color: #6b7280;">Dịch vụ</span>
+              <span class="font-mono text-xs uppercase tracking-widest" style="color: #6b7280;">Giá</span>
+            </div>
+            {pricingData[tab].items.map((item, i) => (
+              <div class={`table-row ${i % 2 === 0 ? 'row-even' : ''}`}>
+                <span class="font-mono text-sm" style="color: #d1d5db;">{item.service}</span>
+                <div class="price-cell">
+                  <span class="font-heading text-xl price-value">{item.price}</span>
+                  {item.note && <span class="font-mono text-xs" style="color: #6b7280;">{item.note}</span>}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div class="table-footer">
+            <p class="font-mono text-xs" style="color: #6b7280;">
+              * Giá trên là giá tham khảo. Giá thực tế có thể thay đổi tùy theo mức độ phức tạp của công việc.
+              Thợ sẽ kiểm tra và báo giá chính xác trước khi bắt đầu.
+            </p>
+            <a href="#dat-lich" class="table-cta font-mono font-bold text-sm uppercase tracking-wider">
+              Đặt lịch & nhận báo giá
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #FF6B1A;
+    display: block;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: white;
+    letter-spacing: 0.05em;
+    line-height: 1;
+  }
+
+  .title-underline {
+    width: 60px;
+    height: 3px;
+    background: #FF6B1A;
+    margin-top: 1rem;
+    position: relative;
+  }
+
+  .title-underline::after {
+    content: "";
+    position: absolute;
+    left: 70px;
+    top: 0;
+    width: 20px;
+    height: 3px;
+    background: #FFD700;
+  }
+
+  .tabs-container {
+    max-width: 48rem;
+    margin: 0 auto;
+    border: 1px solid #2a2a3a;
+  }
+
+  .tabs-header {
+    display: flex;
+    border-bottom: 1px solid #2a2a3a;
+  }
+
+  .tab-btn {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #6b7280;
+    transition: all 0.2s ease;
+    border-right: 1px solid #2a2a3a;
+    font-size: 0.8rem;
+  }
+
+  .tab-btn:last-child {
+    border-right: none;
+  }
+
+  .tab-btn:hover {
+    color: white;
+    background: rgba(255, 107, 26, 0.05);
+  }
+
+  .tab-btn.active {
+    color: #FF6B1A;
+    background: rgba(255, 107, 26, 0.08);
+    border-bottom: 2px solid #FF6B1A;
+    margin-bottom: -1px;
+  }
+
+  .tab-panel {
+    padding: 0;
+  }
+
+  .pricing-table {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .table-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 107, 26, 0.05);
+    border-bottom: 1px solid #2a2a3a;
+  }
+
+  .table-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.875rem 1.5rem;
+    border-bottom: 1px solid #1a1a24;
+    transition: background 0.2s ease;
+  }
+
+  .table-row:hover {
+    background: rgba(255, 107, 26, 0.04);
+  }
+
+  .row-even {
+    background: rgba(255, 255, 255, 0.01);
+  }
+
+  .price-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .price-value {
+    font-family: var(--font-heading);
+    color: #FFD700;
+    letter-spacing: 0.05em;
+  }
+
+  .table-footer {
+    padding: 1.25rem 1.5rem;
+    background: rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .table-footer {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .table-cta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #FF6B1A;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  .table-cta:hover {
+    color: #FFD700;
+  }
+</style>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.tab-btn');
+  const panels = document.querySelectorAll<HTMLElement>('.tab-panel');
+
+  function activateTab(tabId: string) {
+    tabs.forEach(t => {
+      t.classList.toggle('active', t.dataset.tab === tabId);
+    });
+    panels.forEach(p => {
+      (p as HTMLElement).style.display = p.dataset.panel === tabId ? 'block' : 'none';
+    });
+  }
+
+  // Activate first tab
+  if (tabs.length > 0) {
+    const firstTab = tabs[0].dataset.tab;
+    if (firstTab) activateTab(firstTab);
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const tabId = tab.dataset.tab;
+      if (tabId) activateTab(tabId);
+    });
+  });
+</script>

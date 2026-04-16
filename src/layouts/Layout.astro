@@ -1,0 +1,152 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = 'ĐIỆN NƯỚC PRO - Sửa Chữa Điện, Nước, Điều Hòa Tại Nhà | Có Mặt Trong 30 Phút',
+  description = 'Dịch vụ sửa chữa điện, nước, điều hòa tại Hà Nội & TP.HCM. Thợ có mặt trong 30 phút, 10 năm kinh nghiệm, bảo hành 6 tháng, giá cố định không phát sinh. Hotline: 0909-123-456'
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="sửa chữa điện, sửa chữa nước, sửa điều hòa, thợ điện nước, sửa chữa tại nhà, điện nước hà nội, điện nước hcm" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+    <style>
+      :root {
+        --color-dark: #0a0a0f;
+        --color-dark-2: #111118;
+        --color-dark-3: #1a1a24;
+        --color-primary: #FF6B1A;
+        --color-primary-dark: #e55a0e;
+        --color-primary-light: #ff8a47;
+        --color-accent: #FFD700;
+        --color-accent-dark: #e6c200;
+        --color-border: #2a2a3a;
+        --font-heading: 'Bebas Neue', Impact, sans-serif;
+        --font-body: 'IBM Plex Mono', 'Courier New', monospace;
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: var(--color-dark);
+        color: #e8e8e8;
+        font-family: var(--font-body);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      h1, h2, h3, h4 {
+        font-family: var(--font-heading);
+        letter-spacing: 0.05em;
+      }
+
+      ::selection {
+        background-color: var(--color-primary);
+        color: #fff;
+      }
+
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--color-dark-2);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--color-primary);
+        border-radius: 3px;
+      }
+
+      .glitch {
+        position: relative;
+      }
+
+      .glitch::before,
+      .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .glitch::before {
+        animation: glitch-1 3s infinite;
+        color: var(--color-primary);
+        clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
+        transform: translate(-2px, -1px);
+      }
+
+      .glitch::after {
+        animation: glitch-2 3s infinite;
+        color: var(--color-accent);
+        clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+        transform: translate(2px, 1px);
+      }
+
+      @keyframes glitch-1 {
+        0%, 90%, 100% { transform: translate(-2px, -1px); }
+        92% { transform: translate(2px, 1px); }
+        94% { transform: translate(-1px, 2px); }
+        96% { transform: translate(0); }
+      }
+
+      @keyframes glitch-2 {
+        0%, 88%, 100% { transform: translate(2px, 1px); }
+        90% { transform: translate(-2px, -1px); }
+        93% { transform: translate(1px, -2px); }
+        95% { transform: translate(0); }
+      }
+
+      .section-label {
+        font-family: var(--font-body);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--color-primary);
+      }
+
+      .brutalist-border {
+        border: 2px solid var(--color-border);
+        position: relative;
+      }
+
+      .brutalist-border::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: 1px solid rgba(255, 107, 26, 0.1);
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,297 @@
+---
+const reviews = [
+  {
+    name: "Nguyễn Văn Minh",
+    location: "Cầu Giấy, Hà Nội",
+    rating: 5,
+    date: "15/03/2025",
+    service: "Sửa điện",
+    content:
+      "Thợ đến đúng 25 phút sau khi gọi điện, rất đúng hẹn. Xử lý chập cháy điện rất nhanh và chuyên nghiệp. Giá đúng như báo trước, không phát sinh thêm. Sẽ gọi lại lần sau.",
+    avatar: "NVM",
+  },
+  {
+    name: "Trần Thị Hương",
+    location: "Quận 7, TP.HCM",
+    rating: 5,
+    date: "28/02/2025",
+    service: "Thông cống + Sửa nước",
+    content:
+      "Bồn cầu nghẹt từ tối, sáng sớm gọi là thợ có mặt ngay. Làm sạch luôn cả hệ thống ống nước, báo luôn những chỗ có nguy cơ hỏng để mình phòng tránh. Rất hài lòng!",
+    avatar: "TTH",
+  },
+  {
+    name: "Lê Quang Khải",
+    location: "Bình Thạnh, TP.HCM",
+    rating: 5,
+    date: "10/03/2025",
+    service: "Vệ sinh + Nạp gas điều hòa",
+    content:
+      "Điều hòa nhà mình 3 năm chưa vệ sinh, gọi Điện Nước Pro đến làm. Thợ chuyên nghiệp, mang đầy đủ dụng cụ. Máy sau khi làm lạnh hơn hẳn. Giá rất hợp lý!",
+    avatar: "LQK",
+  },
+];
+---
+
+<section id="testimonials" class="py-20 md:py-28" style="background: #0d0d14;">
+  <div class="container mx-auto px-4 md:px-8">
+    <!-- Section Header -->
+    <div class="mb-16 text-center">
+      <div class="section-label mb-3">— Khách Hàng Nói Gì —</div>
+      <h2 class="section-title">ĐÁNH GIÁ</h2>
+      <div class="title-underline mx-auto"></div>
+    </div>
+
+    <!-- Reviews Grid -->
+    <div class="reviews-grid">
+      {reviews.map((review, i) => (
+        <div class="review-card" style={`animation-delay: ${i * 0.1}s`}>
+          <!-- Stars -->
+          <div class="stars-row">
+            {Array.from({length: review.rating}).map(() => (
+              <span class="star">★</span>
+            ))}
+          </div>
+
+          <!-- Quote -->
+          <div class="review-quote">
+            <span class="quote-mark">"</span>
+          </div>
+
+          <p class="review-content">
+            {review.content}
+          </p>
+
+          <!-- Service tag -->
+          <div class="service-tag">
+            <span class="font-mono text-xs uppercase tracking-wider" style="color: #FF6B1A;">Dịch vụ: </span>
+            <span class="font-mono text-xs" style="color: #9ca3af;">{review.service}</span>
+          </div>
+
+          <!-- Reviewer -->
+          <div class="reviewer-info">
+            <div class="reviewer-avatar">{review.avatar}</div>
+            <div>
+              <div class="reviewer-name">{review.name}</div>
+              <div class="reviewer-location">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="color: #FF6B1A;">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                {review.location}
+              </div>
+            </div>
+            <div class="review-date">{review.date}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Rating Summary -->
+    <div class="rating-summary">
+      <div class="rating-big">
+        <span class="font-heading" style="font-family: var(--font-heading); font-size: 4rem; color: #FFD700; line-height: 1;">4.9</span>
+        <span class="font-mono text-sm" style="color: #6b7280;">/5.0</span>
+      </div>
+      <div class="rating-details">
+        <div class="stars-row mb-1">
+          {Array.from({length: 5}).map(() => <span class="star">★</span>)}
+        </div>
+        <p class="font-mono text-sm" style="color: #9ca3af;">Dựa trên 500+ đánh giá từ khách hàng</p>
+      </div>
+      <div class="rating-platforms">
+        <span class="font-mono text-xs uppercase tracking-wider" style="color: #6b7280;">Đánh giá trên Google & Facebook</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #FF6B1A;
+    display: block;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: white;
+    letter-spacing: 0.05em;
+    line-height: 1;
+  }
+
+  .title-underline {
+    width: 60px;
+    height: 3px;
+    background: #FF6B1A;
+    margin-top: 1rem;
+    position: relative;
+  }
+
+  .title-underline::after {
+    content: "";
+    position: absolute;
+    left: 70px;
+    top: 0;
+    width: 20px;
+    height: 3px;
+    background: #FFD700;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .reviews-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .review-card {
+    background: #111118;
+    border: 1px solid #2a2a3a;
+    padding: 2rem;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .review-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, #FF6B1A, transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .review-card:hover {
+    border-color: rgba(255, 107, 26, 0.3);
+    transform: translateY(-4px);
+  }
+
+  .review-card:hover::before {
+    opacity: 1;
+  }
+
+  .stars-row {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .star {
+    color: #FFD700;
+    font-size: 1rem;
+  }
+
+  .review-quote {
+    position: relative;
+    margin-bottom: 0.5rem;
+  }
+
+  .quote-mark {
+    font-family: Georgia, serif;
+    font-size: 4rem;
+    color: rgba(255, 107, 26, 0.2);
+    line-height: 0.5;
+  }
+
+  .review-content {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: #9ca3af;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .service-tag {
+    padding: 0.4rem 0.75rem;
+    border: 1px solid rgba(255, 107, 26, 0.2);
+    background: rgba(255, 107, 26, 0.04);
+    margin-bottom: 1.25rem;
+    display: inline-block;
+  }
+
+  .reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid #2a2a3a;
+  }
+
+  .reviewer-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: linear-gradient(135deg, #FF6B1A, #FFD700);
+    color: #0a0a0f;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-weight: bold;
+  }
+
+  .reviewer-name {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .reviewer-location {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: 0.15rem;
+  }
+
+  .review-date {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    color: #4b5563;
+    margin-left: auto;
+  }
+
+  .rating-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    border: 1px solid #2a2a3a;
+    background: rgba(255, 215, 0, 0.02);
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    .rating-summary {
+      flex-direction: row;
+      text-align: left;
+      gap: 3rem;
+    }
+  }
+
+  .rating-big {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+</style>

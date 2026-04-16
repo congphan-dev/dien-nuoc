@@ -1,0 +1,269 @@
+---
+const services = [
+  {
+    id: "dien",
+    icon: "⚡",
+    title: "Điện",
+    tagline: "Electrical Services",
+    color: "#FFD700",
+    items: [
+      "Sửa chữa hệ thống điện trong nhà",
+      "Thay dây điện, aptomat, cầu dao",
+      "Lắp đặt đèn, quạt, ổ cắm điện",
+      "Xử lý chập cháy, rò rỉ điện",
+      "Lắp đặt hệ thống điện mới",
+      "Sửa chữa bảng điện tổng",
+    ],
+  },
+  {
+    id: "nuoc",
+    icon: "🔧",
+    title: "Nước",
+    tagline: "Plumbing Services",
+    color: "#38bdf8",
+    items: [
+      "Sửa chữa đường ống nước hỏng",
+      "Thông cống nghẹt, hút bể phốt",
+      "Thay vòi sen, bồn cầu, lavabo",
+      "Sửa máy bơm nước, bình nóng lạnh",
+      "Lắp đặt hệ thống nước mới",
+      "Xử lý rò rỉ, thấm dột",
+    ],
+  },
+  {
+    id: "dieu-hoa",
+    icon: "❄️",
+    title: "Điều Hòa",
+    tagline: "AC Services",
+    color: "#a78bfa",
+    items: [
+      "Vệ sinh điều hòa, tủ lạnh",
+      "Nạp gas điều hòa các loại",
+      "Sửa chữa điều hòa không lạnh",
+      "Lắp đặt điều hòa mới",
+      "Bảo dưỡng định kỳ điều hòa",
+      "Sửa bo mạch, máy nén lạnh",
+    ],
+  },
+];
+---
+
+<section id="dich-vu" class="py-20 md:py-28" style="background: #0a0a0f;">
+  <div class="container mx-auto px-4 md:px-8">
+    <!-- Section Header -->
+    <div class="mb-16 text-center">
+      <div class="section-label mb-3">— Dịch Vụ Của Chúng Tôi —</div>
+      <h2 class="section-title">DỊCH VỤ</h2>
+      <div class="title-underline"></div>
+      <p class="font-mono text-sm md:text-base max-w-lg mx-auto mt-4" style="color: #9ca3af;">
+        Đội ngũ thợ lành nghề, chuyên nghiệp — sẵn sàng xử lý mọi sự cố
+      </p>
+    </div>
+
+    <!-- Service Cards -->
+    <div class="services-grid">
+      {services.map((service, index) => (
+        <div class="service-card" style={`--card-color: ${service.color}; animation-delay: ${index * 0.1}s`}>
+          <!-- Card Header -->
+          <div class="card-header">
+            <div class="service-icon">{service.icon}</div>
+            <div>
+              <div class="font-mono text-xs uppercase tracking-widest mb-1" style="color: var(--card-color); opacity: 0.8;">
+                {service.tagline}
+              </div>
+              <h3 class="card-title" style="font-family: var(--font-heading); color: var(--card-color);">
+                {service.title}
+              </h3>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="card-divider" style={`background: ${service.color};`}></div>
+
+          <!-- Service List -->
+          <ul class="service-list">
+            {service.items.map((item) => (
+              <li class="service-list-item">
+                <span class="list-bullet" style="color: var(--card-color);">▶</span>
+                <span class="font-mono text-sm" style="color: #d1d5db;">{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          <!-- CTA -->
+          <a href="#dat-lich" class="card-cta font-mono font-bold text-sm uppercase tracking-wider" style={`border-color: ${service.color}; color: ${service.color};`}>
+            Đặt lịch ngay
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+
+          <!-- Corner accent -->
+          <div class="corner-accent" style={`background: ${service.color};`}></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #FF6B1A;
+    display: block;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: white;
+    letter-spacing: 0.05em;
+    line-height: 1;
+  }
+
+  .title-underline {
+    width: 60px;
+    height: 3px;
+    background: #FF6B1A;
+    margin: 1rem auto 0;
+    position: relative;
+  }
+
+  .title-underline::after {
+    content: "";
+    position: absolute;
+    left: 70px;
+    top: 0;
+    width: 20px;
+    height: 3px;
+    background: #FFD700;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .service-card {
+    background: #111118;
+    border: 1px solid #2a2a3a;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .service-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--card-color);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+
+  .service-card:hover {
+    border-color: var(--card-color);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+
+  .service-card:hover::before {
+    opacity: 1;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .service-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid #2a2a3a;
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+    line-height: 1;
+  }
+
+  .card-divider {
+    height: 1px;
+    opacity: 0.2;
+    margin-bottom: 1.25rem;
+  }
+
+  .service-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .service-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .list-bullet {
+    font-size: 0.55rem;
+    margin-top: 0.3rem;
+    flex-shrink: 0;
+  }
+
+  .card-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    background: transparent;
+  }
+
+  .card-cta:hover {
+    background: var(--card-color);
+    color: #0a0a0f !important;
+  }
+
+  .corner-accent {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    opacity: 0.3;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  }
+</style>
