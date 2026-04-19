@@ -17,7 +17,7 @@ export default {
       },
       fontFamily: {
         'heading': ['"Bebas Neue"', 'Impact', 'sans-serif'],
-        'mono': ['"IBM Plex Mono"', 'Courier New', 'monospace'],
+        'mono': ['"Be Vietnam Pro"', 'sans-serif'],
       },
       animation: {
         'ticker': 'ticker 30s linear infinite',
